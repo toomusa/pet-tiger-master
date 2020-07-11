@@ -10,6 +10,7 @@ import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import orangeLogo from "../assets/images/orangeLogo.png";
 import petTiger from "../assets/images/petTiger.png";
 import Fab from '@material-ui/core/Fab';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
@@ -99,7 +100,7 @@ export const Navbar = (props: Props) => {
             <Toolbar>
               <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                 {/* <MenuIcon /> */}
-                <Avatar variant="rounded" alt="Remy Sharp" src={petTiger} className={classes.avatar} />
+                <Avatar variant="rounded" alt="Remy Sharp" src={orangeLogo} className={classes.avatar} />
               </IconButton>
               {/* <Typography variant="h6" className={classes.menuItem}>
             Home
