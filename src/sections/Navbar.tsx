@@ -11,7 +11,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import orangeLogo from "../assets/images/orangeLogo.png";
-import petTiger from "../assets/images/petTiger.png";
 import Fab from '@material-ui/core/Fab';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Zoom from '@material-ui/core/Zoom';
@@ -34,7 +33,6 @@ const useStyles = makeStyles((theme: Theme) =>
       position: 'fixed',
       bottom: theme.spacing(2),
       right: theme.spacing(2),
-      // flexGrow: 1,
     },
     menuButton: {
       marginRight: theme.spacing(2),
@@ -127,7 +125,7 @@ export const Navbar = (props: Props) => {
           color="primary" 
           size="small" 
           aria-label="scroll back to top" 
-          style={{ marginBottom: `${isSm ? "120px" : "200px"}` }}
+          style={{ marginBottom: `${isSm ? "180px" : "250px"}` }}
         >
           <KeyboardArrowUpIcon />
         </Fab>

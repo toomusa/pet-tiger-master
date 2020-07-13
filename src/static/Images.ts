@@ -1,8 +1,7 @@
 import pick1 from "../assets/images/pick1.jpg";
 import pick2 from "../assets/images/pick2.jpg";
-import pick3 from "../assets/images/pick3.png";
-import thumbsUp from "../assets/images/thumbsUp2.png";
-
+import iphone2 from "../assets/images/iphone2.jpg";
+import thumbsUp from "../assets/images/thumbsUp.png";
 
 type ImageData = {
   title: string,
@@ -23,7 +22,7 @@ export const GridImages: ImageData[] = [
   },
   {
     title: "Monitor Progress in Real-Time",
-    source: `${pick3}`,
+    source: `${iphone2}`,
     delay: 400
   },
 ];

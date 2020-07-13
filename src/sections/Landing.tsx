@@ -6,13 +6,20 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { VideoCard } from "../components";
 import { LandingVideo } from '../static';
 import { green } from '@material-ui/core/colors';
-
+// import Avatar from '@material-ui/core/Avatar';
+// import petTiger from "../assets/images/petTiger.png";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     superSub: {
       color: green[600],
-      // fontSize: "18px"
+    },
+    avatar: {
+      zIndex: 99,
+      float: 'right',
+      marginTop: "7px",
+      height: "60px",
+      width: "60px",
     }
   })
 )
@@ -24,9 +31,11 @@ export const Landing = () => {
 
   return (
     <div style={{ backgroundColor: "#FFFFFF" }}>
-      <Box p={[3, 5, 3, 5]} m={3}>
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={7}>
+      <Box p={[3, 5, 3, 5]} mb={3}>
+        <Grid container spacing={4} alignContent="space-around">
+          <Grid item sm={false} lg={1} />
+          <Grid item xs={12} md={7} lg={6}>
+            {/* <Avatar variant="rounded" alt="PET Tiger" src={petTiger} className={classes.avatar} /> */}
             <Typography variant="h2" align={isMd ? "left" : "center"}>PET TIGER</Typography>
             <Typography variant="h5" align={isMd ? "left" : "center"}>{`Labor & Productivity Management System`}</Typography>
             <Box m={2}>

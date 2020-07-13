@@ -5,8 +5,6 @@ import Box from '@material-ui/core/Box';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import { ImageModal } from './ImageModal';
-import IconButton from '@material-ui/core/IconButton';
-import ZoomOutMapOutlinedIcon from '@material-ui/icons/ZoomOutMapOutlined';
 import { GridImages } from "../static";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -16,7 +14,6 @@ const useStyles = makeStyles((theme: Theme) =>
       flexWrap: 'wrap',
       justifyContent: 'space-around',
       overflow: 'hidden',
-      // height: "200px",
       backgroundColor: theme.palette.background.paper,
     },
     gridList: {
@@ -41,7 +38,7 @@ export const ImageGallery = () => {
     <div style={{ backgroundColor: "#FFFFFF" }}>
     <Box p={[3, 5, 3, 5]} m={3}>
     <div className={classes.root}>
-      <GridList className={classes.gridList} cols={3}>
+      <GridList className={classes.gridList} cols={3} spacing={20}>
         {GridImages.map((tile) => (
           <GridListTile 
             key={tile.source}

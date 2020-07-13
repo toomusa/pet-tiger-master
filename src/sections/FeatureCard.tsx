@@ -19,7 +19,10 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: "center",
       marginBottom: theme.spacing(3),
       padding: theme.spacing(1) * 1.5
-    }
+    },
+     cardWrapper: {
+       textAlign: "center",
+     }
   }),
 );
 
@@ -51,23 +54,25 @@ function FeatureCard(props: Props) {
 
   return (
     <Fragment>
-      <div
-        // We will set color and fill here, due to some prios complications
-        className={classes.iconWrapper}
-        style={{
-          color: color,
-          backgroundColor: shadeColor(color, 0.5),
-          fill: color
-        }}
-      >
-        {Icon}
+      <div className={classes.cardWrapper}>
+        <div
+          // We will set color and fill here, due to some prios complications
+          className={classes.iconWrapper}
+          style={{
+            color: color,
+            backgroundColor: shadeColor(color, 0.5),
+            fill: color,
+          }}
+        >
+          {Icon}
+        </div>
+        <Typography variant="h6" paragraph>
+          {headline}
+        </Typography>
+        <Typography variant="body1" color="textSecondary">
+          {text}
+        </Typography>
       </div>
-      <Typography variant="h5" paragraph>
-        {headline}
-      </Typography>
-      <Typography variant="body1" color="textSecondary">
-        {text}
-      </Typography>
     </Fragment>
   );
 }
