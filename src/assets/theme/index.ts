@@ -1,4 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
+// import '@material-ui/lab/themeAugmentation';
 import {grey, green, deepOrange} from '@material-ui/core/colors';
 
 export const theme = createMuiTheme({
@@ -14,3 +15,13 @@ export const theme = createMuiTheme({
     }
   }
 })
+
+// const theme = createMuiTheme({
+//   overrides: {
+//     MuiTimeline: {
+//       root: {
+//         backgroundColor: 'red',
+//       },
+//     },
+//   },
+// });

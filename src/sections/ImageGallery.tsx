@@ -4,7 +4,7 @@ import GridList from '@material-ui/core/GridList';
 import Box from '@material-ui/core/Box';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-import { ImageModal } from './ImageModal';
+import { ImageModal } from '../components/ImageModal';
 import { GridImages } from "../static";
 
 const useStyles = makeStyles((theme: Theme) =>

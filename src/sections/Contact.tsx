@@ -1,17 +1,35 @@
 import React, { useState, FormEvent } from 'react';
 import emailjs from 'emailjs-com';
+import { SnackbarAlert } from '../components';
 import { Typography, Grid, Box, Button } from '@material-ui/core';
 import CardMedia from '@material-ui/core/CardMedia';
 import Hidden from '@material-ui/core/Hidden';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import { ContactImage } from "../static";
+import { Color } from '@material-ui/lab/Alert';
 
 const inquiryOptions = [
   "General Questions",
   "Schedule a Demo",
   "Book a Consultation"
-]
+];
+
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  inquiry: string;
+  message: string;
+};
+
+const validate = (formData: FormData) => {
+    const emailFormat = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const isEmail = emailFormat.test(String(formData.email).toLowerCase());
+    const phoneFormat = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/im;
+    const isPhone = phoneFormat.test(String(formData.phone).toLowerCase());
+    return isEmail && isPhone;
+}
 
 export const Contact = () => {
   const [email, setEmail] = useState('');
@@ -19,22 +37,48 @@ export const Contact = () => {
   const [phone, setPhone] = useState('');
   const [inquiry, setInquiry] = useState('');
   const [message, setMessage] = useState('');
+  const [open, setOpen] = useState(false);
+  const [formResult, setFormResult] = useState("");
+  const [snackbarMessage, setSnackbarMessage] = useState("");
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const formData = { name, email, phone, inquiry, message };
     console.log(formData)
-    emailjs.send(
-      `gmail`, 
-      `pet_tiger_web_inquiry`, 
-      formData, 
-      `${process.env.REACT_APP_EMAILJS_USER_ID}`)
-      .then((result) => {
-          console.log(result.text);
-      }, (error) => {
-          console.log(error.text);
+    const isValid = validate(formData);
+    if (isValid) { 
+      emailjs.send(
+        `gmail`,
+        `pet_tiger_web_inquiry`,
+        formData,
+        `${process.env.REACT_APP_EMAILJS_USER_ID}`
+      ).then(() => {
+        setFormResult("success");
+        setSnackbarMessage("Your message has been sent successfully. We'll get back to you soon!");
+        setEmail("");
+        setName("");
+        setPhone("");
+        setInquiry("");
+        setMessage("");
+        setOpen(true);
+      }, () => {
+        setFormResult("error");
+        setSnackbarMessage("Something went wrong, please try again later.");
+        setOpen(true);
       });
+    } else {
+      setFormResult("error");
+      setSnackbarMessage("Please enter a valid email and phone number.");
+      setOpen(true);
+    }
   }
+
+  const handleClose = (event: React.SyntheticEvent | React.MouseEvent, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
 
   return (
     <div style={{ backgroundColor: "#FFFFFF" }}>
@@ -80,6 +124,12 @@ export const Contact = () => {
           </Hidden>
         </Grid>
       </Box>
+      <SnackbarAlert
+        open={open}
+        handleClose={handleClose}
+        type={formResult as Color}
+        message={snackbarMessage}
+      />
     </div>
   );
 }
